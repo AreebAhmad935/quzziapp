@@ -9,18 +9,30 @@ class Quizpage extends StatefulWidget {
 
 class _QuizpageState extends State<Quizpage> {
   List<Icon> scorekeeper = [
-    const Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    const Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
-    const Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
+    // const Icon(
+    //   Icons.check,
+    //   color: Colors.green,
+    // ),
+    // const Icon(
+    //   Icons.close,
+    //   color: Colors.red,
+    // ),
+    // const Icon(
+    //   Icons.check,
+    //   color: Colors.green,
+    // ),
+  ];
+  List<String> question = [
+    'flutter is a open soruce project.',
+    'flutter is Software Development kit.',
+    'Is Dart Language is HLL.',
+  ];
+  int questionumber = 0;
+
+  List<bool> answers = [
+    true,
+    true,
+    false,
   ];
   @override
   Widget build(BuildContext context) {
@@ -34,15 +46,15 @@ class _QuizpageState extends State<Quizpage> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Expanded(
+          Expanded(
             flex: 5,
             child: Padding(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  'How are you?',
+                  question[questionumber],
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                   ),
                 ),
@@ -58,11 +70,15 @@ class _QuizpageState extends State<Quizpage> {
                 ),
                 onPressed: () {
                   setState(() {
-                    scorekeeper.add(const Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ));
+                    questionumber++;
                   });
+                  bool correctanswer = answers[questionumber];
+                  if (correctanswer == true) {
+                    print('user its right');
+                  } else {
+                    (
+                      print('user is wrong'));
+                  }
                 },
                 child: const Text('Ture'),
               ),
@@ -76,11 +92,15 @@ class _QuizpageState extends State<Quizpage> {
                   primary: Colors.red,
                 ),
                 onPressed: () {
+                  bool correctanswer = answers[questionumber];
+                  if (correctanswer == false) {
+                    print('user its right');
+                  } else {
+                    (
+                      print('user is wrong'));
+                  }
                   setState(() {
-                    scorekeeper.add(const Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ));
+                    questionumber++;
                   });
                 },
                 child: const Text('False'),

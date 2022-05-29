@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quzziapp/question.dart';
 
 class Quizpage extends StatefulWidget {
   const Quizpage({Key? key}) : super(key: key);
@@ -22,18 +23,23 @@ class _QuizpageState extends State<Quizpage> {
     //   color: Colors.green,
     // ),
   ];
-  List<String> question = [
-    'flutter is a open soruce project.',
-    'flutter is Software Development kit.',
-    'Is Dart Language is HLL.',
+  // List<String> question = [
+  //   'flutter is a open soruce project.',
+  //   'flutter is Software Development kit.',
+  //   'Is Dart Language is HLL.',
+  // ];
+  // List<bool> answers = [
+  //   true,
+  //   true,
+  //   false,
+  // ];
+  List<Question> questionbank = [
+    Question(q: 'flutter is a open soruce project.', a: true),
+    Question(q: 'flutter is Software Development kit.', a: true),
+    Question(q: 'Is Dart Language is HLL.', a: false)
   ];
   int questionumber = 0;
 
-  List<bool> answers = [
-    true,
-    true,
-    false,
-  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +58,7 @@ class _QuizpageState extends State<Quizpage> {
               padding: const EdgeInsets.all(10.0),
               child: Center(
                 child: Text(
-                  question[questionumber],
+                  questionbank[questionumber].questiontext,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
@@ -72,12 +78,11 @@ class _QuizpageState extends State<Quizpage> {
                   setState(() {
                     questionumber++;
                   });
-                  bool correctanswer = answers[questionumber];
+                  bool correctanswer = questionbank[questionumber].questionanswer;
                   if (correctanswer == true) {
                     print('user its right');
                   } else {
-                    (
-                      print('user is wrong'));
+                    (print('user is wrong'));
                   }
                 },
                 child: const Text('Ture'),
@@ -92,12 +97,11 @@ class _QuizpageState extends State<Quizpage> {
                   primary: Colors.red,
                 ),
                 onPressed: () {
-                  bool correctanswer = answers[questionumber];
+                  bool correctanswer = questionbank[questionumber].questionanswer;
                   if (correctanswer == false) {
                     print('user its right');
                   } else {
-                    (
-                      print('user is wrong'));
+                    (print('user is wrong'));
                   }
                   setState(() {
                     questionumber++;
